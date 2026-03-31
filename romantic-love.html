@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love For You 💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Satisfy&family=Poppins:wght@300;400;600;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 12s ease infinite;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Particles Love */
+        .love-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart-particle {
+            position: absolute;
+            font-size: 1.2rem;
+            color: #ff69b4;
+            animation: loveFloat 8s linear infinite;
+            text-shadow: 0 0 10px #ff1493;
+        }
+        
+        @keyframes loveFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0);
+                opacity: 0;
+            }
+            10% { opacity: 1; transform: scale(1); }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100px) rotate(720deg) scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        /* Slides Container */
+        .slides-container {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.8) translateY(50px);
+            transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .slide.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        
+        /* Slide Content */
+        .slide-content {
+            text-align: center;
+            max-width: 700px;
+            padding: 0 20px;
+            color: white;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .slide h1 {
+            font-family: 'Satisfy', cursive;
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #ffd1dc, #ff9ff3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px #fff); }
+            to { filter: drop-shadow(0 0 20px #ff69b4); }
+        }
+        
+        .slide h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+        
+        .slide p {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .big-heart {
+            font-size: 8rem;
+            margin: 1rem 0;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 25px #ff1493);
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        
+        /* Navigation Dots */
+        .nav-dots {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 20;
+        }
+        
+        .dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background: #ff69b4;
+            transform: scale(1.3);
+            box-shadow: 0 0 15px #ff1493;
+        }
+        
+        /* Music Player */
+        .music-control {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(15px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.3);
+            z-index: 20;
+        }
+        
+        .music-btn {
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .music-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255,107,157,0.5);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide h1 { font-size: 3.5rem; }
+            .slide h2 { font-size: 2rem; }
+            .slide p { font-size: 1.2rem; }
+            .big-heart { font-size: 6rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Love Particles -->
+    <div class="love-particles" id="loveParticles"></div>
+    
+    <!-- Slides -->
+    <div class="slides-container">
+        <div class="slide active" data-slide="0">
+            <div class="slide-content">
+                <div class="big-heart">💖</div>
+                <h1>I LOVE YOU</h1>
+                <h2>[Fajar]</h2>
+                <p>Kamu adalah alasan aku tersenyum setiap hari. Setiap detik bersamamu adalah kebahagiaan terbesar dalam hidupku.</p>
+            </div>
+        </div>
+        
+        <div class="slide" data-slide="1">
+            <div class="slide-content">
+                <h1>💕</h1>
+                <h2>Kamu Sempurna Bagiku</h2>
+                <p>Dari senyummu yang manis, matamu yang indah, sampai kehadiranmu yang hangat. Kamu adalah definisi sempurna dalam kamus cintaku.</p>
+                <div class="big-heart">💕</div>
+            </div>
+        </div>
+        
+        <div class="slide" data-slide="2">
+            <div class="slide-content">
+                <div class="big-heart">💝</div>
+                <h1>Selamanya Bersamamu</h1>
+                <p>Aku janji akan mencintaimu lebih dari kemarin, tapi kurang dari besok. Forever and always, kamu dan aku.</p>
+            </div>
+        </div>
+        
+        <div class="slide" data-slide="3">
+            <div class="slide-content">
+                <h1>😘</h1>
+                <h2>Harapanku</h2>
+                <p>Aku berharap kita bisa selalu bersama, menjalani hidup dengan penuh cinta dan kebahagiaan.DAn kamu selalu di sisi aku,tidak pernah bosan denganku.</p>
+                <div class="big-heart">😘💋</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navigation Dots -->
+    <div class="nav-dots" id="navDots"></div>
+    
+    <!-- Music Control -->
+    <div class="music-control">
+        <button class="music-btn" id="musicToggle" onclick="toggleMusic()">🎵 Play Love Song</button>
+    </div>
+
+    <script>
+        // Love Particles Generator
+        function createLoveParticle() {
+            const hearts = ['💖', '💕', '💗', '💓', '💞', '💝', '❤️'];
+            const particle = document.createElement('div');
+            particle.className = 'heart-particle';
+            particle.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            document.getElementById('loveParticles').appendChild(particle);
+            
+            setTimeout(() => particle.remove(), 9000);
+        }
+        
+        // Generate continuous particles
+        setInterval(createLoveParticle, 400);
+        for(let i = 0; i < 10; i++) createLoveParticle();
+        
+        // Slides Functionality
+        const slides = document.querySelectorAll('.slide');
+        const navDotsContainer = document.getElementById('navDots');
+        let currentSlide = 0;
+        
+        // Create navigation dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            if(index === 0) dot.classList.add('active');
+            dot.onclick = () => goToSlide(index);
+            navDotsContainer.appendChild(dot);
+        });
+        
+        const dots = document.querySelectorAll('.dot');
+        
+        function goToSlide(slideIndex) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            
+            currentSlide = slideIndex;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+        
+        // Auto slide every 4 seconds
+        setInterval(() => {
+            const nextSlide = (currentSlide + 1) % slides.length;
+            goToSlide(nextSlide);
+        }, 4000);
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'ArrowRight') goToSlide((currentSlide + 1) % slides.length);
+            if(e.key === 'ArrowLeft') goToSlide((currentSlide - 1 + slides.length) % slides.length);
+        });
+        
+        // Music (Embedded tone)
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        let isPlaying = false;
+        
+        function playLoveTone() {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // A note
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 2);
+        }
+        
+        function toggleMusic() {
+            const btn = document.getElementById('musicToggle');
+            if(!isPlaying) {
+                playLoveTone();
+                btn.textContent = '💖 Love Song Playing...';
+                btn.style.background = 'linear-gradient(45deg, #00d4aa, #00b894)';
+                isPlaying = true;
+                setTimeout(() => {
+                    btn.textContent = '🎵 Play Love Song';
+                    btn.style.background = 'linear-gradient(45deg, #ff6b9d, #c44569)';
+                    isPlaying = false;
+                }, 2500);
+            }
+        }
+        
+        // Mouse trail hearts
+        document.addEventListener('mousemove', (e) => {
+            if(Math.random() < 0.1) {
+                const trailHeart = document.createElement('div');
+                trailHeart.innerHTML = '💖';
+                trailHeart.style.position = 'fixed';
+                trailHeart.style.left = e.clientX + 'px';
+                trailHeart.style.top = e.clientY + 'px';
+                trailHeart.style.pointerEvents = 'none';
+                trailHeart.style.fontSize = '1.5rem';
+                trailHeart.style.zIndex = '100';
+                trailHeart.style.animation = 'loveFloat 3s linear forwards';
+                document.body.appendChild(trailHeart);
+                
+                setTimeout(() => trailHeart.remove(), 3000);
+            }
+        });
+    </script>
+</body>
+</html>
